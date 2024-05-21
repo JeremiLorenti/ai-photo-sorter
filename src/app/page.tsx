@@ -53,7 +53,7 @@ export default function Home() {
   const [model, setModel] = useState<ZeroShotClassificationModel>();
 
   const processFiles = async (
-    power: number,
+    power: number, // Ensure the power parameter is passed correctly
     setStatus: (status: {
       progress: number;
       busy: boolean;

@@ -85,7 +85,7 @@ export const NavbarComponent: React.FC<NavbarComponentProps> = (
               ref={powerRef}
               name="power"
               min="1"
-              max="4"
+              max="8"  // Increase the maximum value to 8 or higher based on your CPU capabilities
               defaultValue="1"
               step="1"
               className="slider w-full"
@@ -94,7 +94,7 @@ export const NavbarComponent: React.FC<NavbarComponentProps> = (
             />
             <div className="flex justify-between text-xs mt-1">
               <span className="text-gray-600">1</span>
-              <span className="text-gray-600">4</span>
+              <span className="text-gray-600">8</span>
             </div>
           </div>
           <button
