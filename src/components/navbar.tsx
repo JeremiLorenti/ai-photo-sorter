@@ -117,7 +117,6 @@ export const NavbarComponent: React.FC<NavbarComponentProps> = (
             busy={status.busy}
             modelLoaded={modelLoaded}
           />
-          <CsvUploader onClassesAdded={props.onInputChange} />
         </div>
         <button
           disabled={status.busy || !modelLoaded}
