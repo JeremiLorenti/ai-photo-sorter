@@ -6,6 +6,7 @@ import {
 } from "@visheratin/web-ai/multimodal";
 import { SessionParams } from "@visheratin/web-ai";
 import React, { useEffect, useRef, useState } from "react";
+import CsvUploader from "./CsvUploader";
 
 interface NavbarComponentProps {
   onInputChange: (inputs: string[]) => void;
@@ -64,6 +65,10 @@ export const NavbarComponent: React.FC<NavbarComponentProps> = (
     setProgressValue(status.progress);
   }, [status.progress]);
 
+  const handleClassesAdded = (classes: string[]) => {
+    props.onInputChange(classes);
+  };
+
   return (
     <nav className="bg-white p-6 lg:w-80 lg:h-screen">
       <div className="grid grid-cols-1 gap-4">
@@ -117,7 +122,7 @@ export const NavbarComponent: React.FC<NavbarComponentProps> = (
             busy={status.busy}
             modelLoaded={modelLoaded}
           />
-          <CsvUploader onClassesAdded={props.onInputChange} />
+          <CsvUploader onClassesAdded={handleClassesAdded} />
         </div>
         <button
           disabled={status.busy || !modelLoaded}
