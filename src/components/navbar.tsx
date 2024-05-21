@@ -28,6 +28,7 @@ export const NavbarComponent: React.FC<NavbarComponentProps> = (
 ) => {
   const progressRef = useRef<HTMLDivElement>(null);
   const powerRef = useRef<HTMLInputElement>(null);
+  const csvFileRef = useRef<HTMLInputElement>(null); // Added for CSV file upload
 
   const [status, setStatus] = useState({
     progress: 0,
@@ -53,6 +54,18 @@ export const NavbarComponent: React.FC<NavbarComponentProps> = (
     setTimeout(() => {
       setStatus({ ...status, message: "Ready" });
     }, 2000);
+
+    // Parse CSV file and extract class names
+    if (csvFileRef.current?.files?.length > 0) {
+      const csvFile = csvFileRef.current.files[0];
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        const csvData = event.target.result as string;
+        const classNames = csvData.split("\n").map((line) => line.trim());
+        props.onInputChange(classNames);
+      };
+      reader.readAsText(csvFile);
+    }
   };
 
   const process = () => {
@@ -96,6 +109,18 @@ export const NavbarComponent: React.FC<NavbarComponentProps> = (
               <span className="text-gray-600">1</span>
               <span className="text-gray-600">8</span>
             </div>
+          </div>
+          <div className="w-full">
+            <label className="mr-2 text-gray-700">
+              <span>Upload CSV file (optional)</span>
+            </label>
+            <input
+              type="file"
+              ref={csvFileRef}
+              accept=".csv"
+              className="w-full"
+              placeholder="Select a CSV file"
+            />
           </div>
           <button
             disabled={status.busy}
