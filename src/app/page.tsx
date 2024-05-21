@@ -15,6 +15,7 @@ import CodeSnippetModal from "@/components/codeSnippet";
 import IntroComponent from "@/components/intro";
 import FooterComponent from "@/components/footer";
 import ClassSelector from "@/components/classSelector";
+import CSVUploadComponent from "@/components/csvUpload"; // New component for CSV file upload
 
 export default function Home() {
   const [classNames, setClassNames] = useState<string[]>([]);
@@ -412,6 +413,9 @@ export default function Home() {
           generateScript={generateScript}
           stopProcessing={stopProcessing}
         />
+        <CSVUploadComponent
+          onCSVUpload={(classNames) => setClassNames(classNames)}
+        /> {/* New component for CSV file upload */}
         <div className="border-l border-gray-300 h-auto my-2"></div>
         <main className="flex-grow p-6 lg:w-80 lg:h-full">
           <section>
